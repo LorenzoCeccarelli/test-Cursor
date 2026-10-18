@@ -1,0 +1,80 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+:root {
+  --paper: #f4efe6;
+  --paper-2: #ebe4d6;
+  --ink: #1a1c1b;
+  --ink-soft: #3a3f3d;
+  --muted: #6b716e;
+  --line: #d8d1c3;
+  --petrol: #3d5c58;
+  --petrol-deep: #2c4441;
+  --lane: rgba(61, 92, 88, 0.12);
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-petrol: var(--petrol);
+  --color-petrol-deep: var(--petrol-deep);
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-fraunces);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--petrol) 28%, white);
+}
+
+.lanes {
+  background-image:
+    linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), var(--lane) calc(100% - 1px)),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 46px,
+      color-mix(in srgb, var(--petrol) 9%, transparent) 46px,
+      color-mix(in srgb, var(--petrol) 9%, transparent) 47px
+    );
+}
+
+.wing {
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, var(--petrol) 10%, transparent), transparent 55%),
+    radial-gradient(90% 70% at 100% 100%, color-mix(in srgb, var(--ink) 6%, transparent), transparent 50%);
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: reveal-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+}
